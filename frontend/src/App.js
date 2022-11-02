@@ -1,11 +1,15 @@
-import './App.css';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import ToDo from './pages/ToDo'
+ 
 
 function App() {
   return (
-    <div className="App">
-   HELLO WORLD
-    </div>
-  );
+    <>
+     <ToDo/>
+      <ToastContainer/>
+    </>
+  )
 }
 
 export default App;
