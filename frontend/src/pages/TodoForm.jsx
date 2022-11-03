@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { createTask } from "../features/todo/taskSlice";
+import { createTask } from "../api/taskSlice";
 
 const TodoForm = () => {
-  const [text, setText] = useState('');
+  const [text, setText] = useState("");
   const dispatch = useDispatch();
   const onSubmit = (e) => {
     e.preventDefault();
@@ -14,7 +14,7 @@ const TodoForm = () => {
   return (
     <section className="form">
       <form onSubmit={onSubmit}>
-        <div className="label">set your to do list</div>
+        <div className="label">Set Your List</div>
         <div className="form-group">
           <input
             type="text"

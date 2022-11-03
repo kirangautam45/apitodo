@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import taskService from "./taskService";
+import axios from "axios";
 
 const initialState = {
   tasks: [],
@@ -25,10 +26,12 @@ export const createTask = createAsyncThunk(
     }
   }
 );
+
 // get tasks
-export const getTasks = createAsyncThunk("tasks/get", async (_, thunkAPI) => {
+export const getTasks = createAsyncThunk("tasks/getAll", async (_, thunkAPI) => {
   try {
-    return await taskService.getTasks();
+    const data = thunkAPI.getState()
+    return await taskService.getTasks(data);
   } catch (error) {
     const message =
       (error.response && error.response.data && error.response.data.message) ||
@@ -37,6 +40,8 @@ export const getTasks = createAsyncThunk("tasks/get", async (_, thunkAPI) => {
     return thunkAPI.rejectWithValue(message);
   }
 });
+
+
 
 export const taskSlice = createSlice({
   name: "task",
