@@ -10,20 +10,18 @@ const setToDo = asyncHandler(async (req, res) => {
   const todo = await TodoList.create({
     text: req.body.text,
   });
-  res.status(200).json({ data: todo });
+  res.status(200).json( todo );
 });
 // get Todo List by id
-const getToDos = asyncHandler(async (req, res) => {
+const getToDo = asyncHandler(async (req, res) => {
   const todo = await TodoList.findById(req.params.id);
 
-  res.status(200).json({ data: todo });
+  res.status(200).json(todo );
 });
-const getAllToDos = asyncHandler(async (req, res, next) => {
-  const todo = await TodoList.find({});
-  res.status(200).json({
-    count: todo.length,
-    data: todo,
-  });
+//get all data
+const getAllToDo = asyncHandler(async (req, res, next) => {
+  const todo = await TodoList.find();
+  res.status(200).json(todo );
 });
 
 // get Update List
@@ -31,7 +29,7 @@ const updateToDo = asyncHandler(async (req, res) => {
   const todo = await TodoList.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
   });
-  res.status(200).json({ data: todo });
+  res.status(200).json( todo );
 });
 
 // delete list
@@ -44,8 +42,8 @@ const deleteToDo = asyncHandler(async (req, res) => {
 
 module.exports = {
   setToDo,
-  getToDos,
+  getToDo,
   updateToDo,
   deleteToDo,
-  getAllToDos,
+  getAllToDo,
 };

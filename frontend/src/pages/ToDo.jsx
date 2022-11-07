@@ -6,17 +6,18 @@ import { getTasks, reset } from "../api/taskSlice";
 
 const ToDo = () => {
   const dispatch = useDispatch();
-  const { tasks, isLoading, isError, message } = useSelector(
+  const { tasks,  isError, message } = useSelector(
     (state) => state.tasks
   );
   useEffect(() => {
     if (isError) {
       console.log(message);
-      dispatch(getTasks());
     }
+    dispatch(getTasks());
+
     return () => {
-      dispatch(reset())
-    }
+      dispatch(reset());
+    };
   }, [isError, message, dispatch]);
 
   return (
