@@ -45,10 +45,10 @@ export const getTasks = createAsyncThunk(
 );
 //delete tasks
 export const deleteTask = createAsyncThunk(
-  'tasks/delete',
+  "tasks/delete",
   async (id, thunkAPI) => {
     try {
-      return await taskService.deleteTask(id)
+      return await taskService.deleteTask(id);
     } catch (error) {
       const message =
         (error.response &&
@@ -59,25 +59,23 @@ export const deleteTask = createAsyncThunk(
       return thunkAPI.rejectWithValue(message);
     }
   }
-)
-export const updateTasks = createAsyncThunk(
-  '/tasks/update', async (id, thunkAPI) => {
+);
+export const updateTask = createAsyncThunk(
+  "/tasks/update",
+  async (id, thunkAPI) => {
     try {
-      return await taskService.updateTask(id)
-      
+      return await taskService.updateTask(id);
     } catch (error) {
-       const message =
-         (error.response &&
-           error.response.data &&
-           error.response.data.message) ||
-         error.message ||
-         error.toString();
-       return thunkAPI.rejectWithValue(message);
-    
-      
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
     }
   }
-)
+);
 
 export const taskSlice = createSlice({
   name: "task",
@@ -87,7 +85,7 @@ export const taskSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      // add case
+      // add create
       .addCase(createTask.pending, (state) => {
         state.isLoading = true;
       })
@@ -104,7 +102,7 @@ export const taskSlice = createSlice({
       .addCase(getTasks.pending, (state) => {
         state.isLoading = true;
       })
-      // get case 
+      // get case
       .addCase(getTasks.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
@@ -115,7 +113,7 @@ export const taskSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
       })
-      // delete case 
+      // delete case
       .addCase(deleteTask.pending, (state) => {
         state.isLoading = true;
       })
@@ -131,20 +129,20 @@ export const taskSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
       })
-      // add case
-      .addCase(updateTasks.pending, (state) => {
+      // update task
+      .addCase(updateTask.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(updateTasks.fulfilled, (state, action) => {
+      .addCase(updateTask.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.tasks.push(action.payload);
+        state.tasks = action.payload;
       })
-      .addCase(updateTasks.rejected, (state, action) => {
+      .addCase(updateTask.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
-      })
+      });
   },
 });
 
