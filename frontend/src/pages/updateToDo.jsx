@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { updateTask } from '../api/taskSlice';
-import e from 'cors';
-
+ // eslint-disable-next-line
 const UpdateToDo = () => {
   const initialValue = {
     text: "",
@@ -14,10 +13,9 @@ const UpdateToDo = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
 
-  let navigate = useNavigate();
   const updateDetails = (e) => {
     e.preventDefault();
-    dispatch(updateTask({ text }))
+    dispatch(updateTask({ text,id }))
     setData("")
     
   }
@@ -48,7 +46,7 @@ const UpdateToDo = () => {
           </div>
           <div className="from-group">
             <button className="btn btn-block" onClick={()=>updateDetails()}>
-              Edit To do{" "}
+              Edit To do{"edit info "}
             </button>
           </div>
         </form>
