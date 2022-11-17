@@ -1,13 +1,11 @@
-import React, { useState } from 'react'
-import { useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { updateTask } from '../api/taskSlice';
- // eslint-disable-next-line
+import React, { useState } from "react";
+import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { updateTask } from "../api/taskService";
 const UpdateToDo = () => {
   const initialValue = {
     text: "",
   };
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [data, setData] = useState(initialValue);
   const { text } = data;
   const { id } = useParams();
@@ -15,13 +13,12 @@ const UpdateToDo = () => {
 
   const updateDetails = (e) => {
     e.preventDefault();
-    dispatch(updateTask({ text,id }))
-    setData("")
-    
-  }
+    dispatch(updateTask({ text, id }));
+    setData("");
+  };
 
   const onChangeValue = (e) => {
-    setData({[e.target.name]: e.target.value });
+    setData({ [e.target.name]: e.target.value });
   };
 
   return (
@@ -32,9 +29,7 @@ const UpdateToDo = () => {
 
       <section className="form">
         <form>
-          <div className="label">
-            Edit your List
-          </div>
+          <div className="label">Edit your List</div>
           <div className="form-group">
             <input
               type="text"
@@ -45,8 +40,8 @@ const UpdateToDo = () => {
             />
           </div>
           <div className="from-group">
-            <button className="btn btn-block" onClick={()=>updateDetails()}>
-              Edit To do{"edit info "}
+            <button className="btn btn-block" onClick={() => updateDetails()}>
+              Edit To do
             </button>
           </div>
         </form>
@@ -55,5 +50,4 @@ const UpdateToDo = () => {
   );
 };
 
-
-export default UpdateToDo
+export default UpdateToDo;
