@@ -5,7 +5,7 @@ const todoSchema = mongoose.Schema({
     type: String,
     require: [true, "please add to do List"],
   },
-  isCompleted: {
+  status: {
     type: Boolean,
     default: false,
   },
