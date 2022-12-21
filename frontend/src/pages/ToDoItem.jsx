@@ -1,7 +1,6 @@
 import React from "react";
-import { AiOutlineEdit, AiOutlineDelete, AiOutlineCheck } from "react-icons/ai";
+import {  AiOutlineDelete,} from "react-icons/ai";
 import { useDispatch } from "react-redux";
-import { UpdateToDo } from "./updateToDo";
 import { deleteTask } from "../api/taskSlice";
 const ToDoItem = ({ task, markDone }) => {
   const dispatch = useDispatch();
@@ -17,10 +16,7 @@ const ToDoItem = ({ task, markDone }) => {
             onClick={() => dispatch(deleteTask(task._id))}
             style={{ marginLeft: "10px" }}
           />
-          <AiOutlineEdit
-            onClick={<UpdateToDo />}
-            style={{ marginLeft: "10px" }}
-          />
+         
         </button>
         <div>{new Date(task.updatedAt).toLocaleString("en-US")}</div>
       </div>
